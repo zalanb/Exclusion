@@ -132,15 +132,10 @@ public class ExclusionTest extends HudsonTestCase {
         List<? extends Object> bouttonNewResource3 = page.getByXPath("//a[contains(text(),'New Resource')]");
         HtmlAnchor newResource = (HtmlAnchor) bouttonNewResource3.get(0);
         newResource.click();
-        newResource.click();
-
-        List<? extends Object> textBoxResource2 = page.getByXPath("//td[@id='main-panel']/form/table/tbody/tr[87]/td/div/div[2]/table/tbody/tr[1]/td[3]/input");
-        HtmlTextInput nameResource2 = (HtmlTextInput) textBoxResource2.get(0);
-        nameResource2.setValueAttribute("resource1");
 
         List<? extends Object> textBoxResource1 = page.getByXPath("//tr[87]/td/div/div[1]/table/tbody/tr[1]/td[3]/input");
         HtmlTextInput nameResource1 = (HtmlTextInput) textBoxResource1.get(0);
-        nameResource1.setValueAttribute("resourcePlus");
+        nameResource1.setValueAttribute("resource1");
 
         List<? extends Object> bouttonAddBuildStepXpath = page.getByXPath("//span[@id='yui-gen4']/span/button");
         HtmlButton bouttonAddBuildStep = (HtmlButton) bouttonAddBuildStepXpath.get(0);
@@ -193,7 +188,7 @@ public class ExclusionTest extends HudsonTestCase {
             }
         }
         //Les 3 ressources du premier projet + ressourceplus qui n'est pas en commun entre les 2 projets
-        assertEquals(4, count);
+        assertEquals(3, count);
         FreeStyleBuild get = scheduleBuild2.get();
         Result result = get.getResult();
         assertEquals(result, Result.SUCCESS);
@@ -213,7 +208,7 @@ public class ExclusionTest extends HudsonTestCase {
             }
         }
         //Les deux du second projet
-        assertEquals(2, count);
+        assertEquals(1, count);
 
         FreeStyleBuild get2 = scheduleBuild21.get();
         Result result2 = get2.getResult();
